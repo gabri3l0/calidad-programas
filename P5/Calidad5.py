@@ -60,9 +60,10 @@ for i in range(n): #Added
 	pA = 0 #Added
 
 	while (abs(pE-pA)>=E): #Added
-        num_seg =* 2 #Added
+		num_seg *= 2 #Added
 		w = x / num_seg #Added
 		pA = l1.calcularP(num_seg) #Added
+
 
 	print("0 to x\t\tdof\t\tActual Value") #Added
 	print(x,"\t\t",int(dof),"\t\t",round((pA),5)) #Added
