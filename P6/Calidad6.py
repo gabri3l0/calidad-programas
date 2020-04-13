@@ -52,9 +52,9 @@ while True: #Base
     except EOFError: #Added
         break #Added
 
-for i in range(1): #Added
-# for i in range(n): #Added
-    signo = False
+# for i in range(1): #Added
+for i in range(n): #Added
+    signo = True
     num_seg = 10 #Base
     p = float(lista[i][0]) #Added
     dof = float(lista[i][1]) #Added
@@ -65,24 +65,25 @@ for i in range(1): #Added
 
     gamma = math.gamma((dof+1)/2)/(((dof*math.pi)**0.5)*math.gamma(dof/2)) #Added
 
-    pE = l1.calcularP(num_seg) #Added
-    # pE = 0
+    # pE = l1.calcularP(num_seg) #Added
+    pE = 0
 
-    print(pE,x)
-    if (p-pE)<0:
-        x -= d
-        signo = False
-    if (p-pE)>0:
-        x += d
-        signo = True
-    l1.agregarError(p-pE) #Added
-    print(pE,x)
+    # print(pE,x)
+    # if (p-pE)<0:
+    #     x -= d
+    #     signo = False
+    # if (p-pE)>0:
+    #     x += d
+    #     signo = True
+    # l1.agregarError(p-pE) #Added
+    # print(pE,x)
 
 
     cont = 1
     while (abs(p-pE)>=E): #Added
         w = x / num_seg #Added
         pE = l1.calcularP(num_seg) #Added
+        print(pE,x)
 
         signoTemp = signo
 
@@ -111,7 +112,6 @@ for i in range(1): #Added
         # print(error)
         # if(cont==15):
             # break
-        print(pE,x)
         # print(round(x,6))
     print('----')
 
