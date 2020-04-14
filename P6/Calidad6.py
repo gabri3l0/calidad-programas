@@ -54,8 +54,9 @@ while True: #Base
 
 # for i in range(1): #Added
 for i in range(n): #Added
-    signo = True
-    num_seg = 10 #Base
+    signo = None
+    # signo = False
+    num_seg = 20 #Base
     p = float(lista[i][0]) #Added
     dof = float(lista[i][1]) #Added
     x = 1
@@ -77,21 +78,30 @@ for i in range(n): #Added
     #     signo = True
     # l1.agregarError(p-pE) #Added
     # print(pE,x)
+    w = x / num_seg #Added
+    pE = l1.calcularP(num_seg) #Added
 
 
     cont = 1
     while (abs(p-pE)>=E): #Added
-        w = x / num_seg #Added
-        pE = l1.calcularP(num_seg) #Added
-        print(pE,x)
+        # w = x / num_seg #Added
+        # pE = l1.calcularP(num_seg) #Added
+        # print(pE,x)
+        # print(pE,x,d,(p-pE))
+
+        if signo is None:
+            if (p-pE)<0:
+                signo = False
+            else:
+                signo = True
 
         signoTemp = signo
 
         if ((p-pE) not in error):
             if (p-pE)<0:
-                # signo = False
-                # if (signo != signoTemp):
-                    # d /= 2
+                signo = False
+                if (signo != signoTemp):
+                    d /= 2
                 x -= d
             if (p-pE)>0:
                 signo = True
@@ -111,8 +121,10 @@ for i in range(n): #Added
         cont += 1
         # print(error)
         # if(cont==15):
-            # break
-        # print(round(x,6))
+        # break
+        w = x / num_seg #Added
+        pE = l1.calcularP(num_seg) #Added
+    print(round(x,6))
     print('----')
 
 	# print("0 to x\t\tdof\t\tActual Value") #Added
