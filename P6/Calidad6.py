@@ -89,9 +89,9 @@ for i in range(n): #Added
 
         if ((p-pE) not in error):
             if (p-pE)<0:
-                signo = False
-                if (signo != signoTemp):
-                    d /= 2
+                # signo = False
+                # if (signo != signoTemp):
+                    # d /= 2
                 x -= d
             if (p-pE)>0:
                 signo = True
