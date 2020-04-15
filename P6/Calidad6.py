@@ -8,7 +8,7 @@ Codigo de Honor:    Doy mi palabra que he realizado esta actividad con integrida
 
 import math #Base
 
-E = 0.0000000000000001 #Base
+E = 0.000000000000001 #Base
 n = 0 #Base
 lista = [] #Base
 
