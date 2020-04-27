@@ -8,7 +8,7 @@ Codigo de Honor:    Doy mi palabra que he realizado esta actividad con integrida
 
 import math #Base
 
-E = 0.000000001 #Base
+E = 0.000001 #Base
 n = 0 #Base
 lista = [] #Base
 
@@ -33,7 +33,7 @@ class ListaC: #Base #Class
             elif (i%2==1): #Base #Class 
                termsData = (((w/3)*4*fx)) #Base #Class 
                p += termsData #Base #Class 
-        return p #Base #Class
+        return float(p) #Base #Class
     #Funcion de agregar valor de la lista
     def agregarError(self,data): #Added #Class 
         return error.append(data) #Added #Class 
@@ -54,7 +54,7 @@ while True: #Base
 
 print("p\t\tdof\t\tActual Value x") #Modified
 
-for i in range(n): #Base
+for i in range(3): #Base
 
     signo = None #Added
     num_seg = 10 #Base
@@ -71,6 +71,7 @@ for i in range(n): #Base
     pE = l1.calcularP(num_seg) #Base
 
     while (abs(p-pE)>=E): #Base
+
 
         if signo is None: #Added
             if (p-pE)<0: #Added
@@ -102,8 +103,14 @@ for i in range(n): #Base
                 d /= 2 #Added
                 x += d #Added
 
+        num_seg = num_seg * 2;    
+        # print(num_seg)
+        # print(w)
+        # print(abs(p-pE))
         w = x / num_seg #Added
 
+
         pE = l1.calcularP(num_seg) #Added
+
 
     print(p,"\t\t",int(dof),"\t\t",round(x,5)) #Modified
