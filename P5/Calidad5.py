@@ -56,12 +56,17 @@ for i in range(n): #Added
 
 	gamma = math.gamma((dof+1)/2)/(((dof*math.pi)**0.5)*math.gamma(dof/2)) #Added
 
-	pE = l1.calcularP(num_seg) #Added
 	pA = 0 #Added
+    pE = 1
+    
 
 	while (abs(pE-pA)>=E): #Added
+        pE = l1.calcularP(num_seg) #Added
+
 		num_seg *= 2 #Added
+
 		w = x / num_seg #Added
+
 		pA = l1.calcularP(num_seg) #Added
 
 
