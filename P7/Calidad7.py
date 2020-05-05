@@ -15,7 +15,7 @@ lista = [] #Base
 
 class ListaC: #Base #Class
     #Funcion de agregar valor de la lista
-    def agregar(self,data): #Base #Class #Deleted
+    def agregar(self,data): #Base #Class
         return lista.append(data) #Base #Class
     def calcularP(self,dof,x): #Base #Class
         gamma = math.gamma((dof+1)/2)/(((dof*math.pi)**0.5)*math.gamma(dof/2)) #Base #Class
@@ -61,9 +61,10 @@ class ListaC: #Base #Class
     def calcularRigth(self,xK,promX,n): #Base #Class
         top = (xK-promX)**2 #Base #Class
         bot = 0 #Base #Class
-        for data in range(n): #Base #Class
-            bot += (float(lista[data][testColumna[i][0]])-promX)**2 #Base #Class
-        func = math.sqrt(1+(1/n)+(top**2/bot)) #Base #Class
+        for data in range(10): #Base #Class
+            if float(lista[data][testColumna[i][0]])>0:
+                bot += (float(lista[data][testColumna[i][0]])-promX)**2 #Base #Class
+        func = math.sqrt(1+(1/n)+((top)/bot)) #Base #Class
         return func #Base #Class
     def funcionT(sefl,dof,p): #Base #Class
         x = 1  #Base #Class
@@ -92,8 +93,9 @@ class ListaC: #Base #Class
         return x #Base #Class
     def desvstd(self,n,y,x,b0,b1): #Base #Class
         sumatoria = 0 #Base #Class
-        for data in range(n): #Base #Class
-            sumatoria += (float(lista[data][y])-b0-(b1*float(lista[data][x])))**2 #Base #Class
+        for data in range(10): #Base #Class
+            if float(lista[data][testColumna[i][0]])>0:
+                sumatoria += (float(lista[data][y])-b0-(b1*float(lista[data][x])))**2 #Base #Class
         desvstd = math.sqrt((1/(n-2))*sumatoria) #Base #Class
         return desvstd #Base #Class
 #---------------------------------------------------------
@@ -135,7 +137,7 @@ class ListaC: #Base #Class
     def bCero(self,promY,bUno,promX): #Base #Class
         return (promY-bUno*promX) #Base #Class
     #Funcion de calcular el coeficiente rXY
-    def rXY(self,n,conjuntoXY,sumaX,sumaY,cuadradoX,cuadradoY): #Added #Class
+    def rXY(self,n,conjuntoXY,sumaX,sumaY,cuadradoX,cuadradoY): #Base #Class
         return ((n*conjuntoXY-sumaX*sumaY)/(math.sqrt(abs((n*cuadradoX-sumaX**2)*(n*cuadradoY-sumaY**2))))) #Base #Class
     #Funcion de calcular el coeficiente r^2
     def rCuadrada(self,rXY): #Base #Class
@@ -161,9 +163,9 @@ while True: #Base
     except EOFError: #Base
         break #Base
 
-testColumna = [[1,3],[1,4],[1,2],[1,2]] #Base
+testColumna = [[1,3],[1,4],[5,6],[5,7]] #Base
 
-for i in range(2): #Base
+for i in range(4): #Base
     bCero = 0 #Base
     bUno = 0 #Base
     rXY = 0 #Base 
@@ -171,6 +173,11 @@ for i in range(2): #Base
     yK = 0 #Base
     xK = 386 #Base
     n = len(lista) #Base
+
+
+    if i > 1: #Added
+        xK = 31
+        n = 4 #Base
 
     l1 = ListaC() #Base
 
@@ -188,8 +195,9 @@ for i in range(2): #Base
     bUno = l1.bUno(conjuntoXY,n,promX,promY,cuadradoX) #Base
     bCero = l1.bCero(promY,bUno,promX) #Base
     rXY = l1.rXY(n,conjuntoXY,sumaX,sumaY,cuadradoX,cuadradoY) #Base 
-    rCuadrada = l1.rCuadrada(rXY) #Base 
-    yK = l1.yK(bCero,bUno,386) #Base
+    rCuadrada = l1.rCuadrada(rXY) #Base
+
+    yK = l1.yK(bCero,bUno,xK) #Base
 
     x = l1.calcularX(rXY,n,rCuadrada) #Base
 
@@ -215,6 +223,7 @@ for i in range(2): #Base
     print('B0',"{:.9f}".format(bCero)) #Base
     print('B1',"{:.9f}".format(bUno)) #Base
     print('yk',"{:.9f}".format(yK)) #Base
+    print('Desv',(desvstd)) #Base
     print('Range',(t*desvstd*rigth)) #Base
     print('UPI',(yK+(t*desvstd*rigth))) #Base
     print('LPI',(yK-(t*desvstd*rigth))) #Base
